@@ -102,6 +102,7 @@ public class GameScene : MonoBehaviour // Manages scene transitions and initiali
 	private void InitializeEventScene()
 	{
 		Debug.Log("Initialize Event Scene");
+		EventManager.instance.GenerateEvent();
 	}
 
 	public void LoadEventScene()

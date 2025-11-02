@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour {
                 inShop = false;
                 inEvent = true;
                 inMap = false;
-                // GameScene.instance.LoadEventScene();
+                GameScene.instance.LoadEventScene();
                 break;
             default:
                 Debug.Log("Unknown map slot type. This should not happen.");
