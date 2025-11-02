@@ -19,6 +19,7 @@ public class ChatRequest
     public string model;
     public ChatMessage[] messages;
     public bool stream;
+    public int seed;
 }
 
 // Response DTOs for parsing API response
@@ -58,18 +59,17 @@ public class LLM : MonoBehaviour
     private const string apiUrl = "https://llmapi.paratera.com/v1/chat/completions";
     public string modelId = "Qwen3-Next-80B-A3B-Instruct";
 
-    public async Task<string> Chat(string userPrompt, string systemPrompt)
+    public async Task<string> Chat(ChatMessage[] messages)
     {
+        int randomSeed = UnityEngine.Random.Range(0, int.MaxValue);
+        
         var requestBody = new ChatRequest
         {
             model = modelId,
-            messages = new[]
-            {
-                new ChatMessage { role = "system", content = systemPrompt },
-                new ChatMessage { role = "user", content = userPrompt }
-            },
-            stream = false
-        };
+            messages = messages,
+            stream = false,
+            seed = randomSeed
+		};
 
         string json = JsonUtility.ToJson(requestBody);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
@@ -120,7 +120,7 @@ public class LLM : MonoBehaviour
                 return null;
             }
 
-            Debug.Log("result£º" + content);
+            Debug.Log($"result (seed: {randomSeed})£º" + content);
             return content;
         }
     }
