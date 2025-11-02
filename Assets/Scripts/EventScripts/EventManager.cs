@@ -18,9 +18,10 @@ public class EventManager : MonoBehaviour {
 
     public async void GenerateEvent() {
         eventText.text = await EventGenerator.instance.GetEvent();
-    }
+		ReplyGenerator.instance.InitEvent(eventText.text);
+	}
 
     public void ExitEvent() {
         GameManager.instance.NextLevel();
-    }
+	}
 }
