@@ -60,6 +60,7 @@ public class EventGenerator : MonoBehaviour
 			currentEvent = "";
 			Debug.Log("Event: " + ev);
 		}
+		GenerateEvent();
 		return ev;
 	}
 
