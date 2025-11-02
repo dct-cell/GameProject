@@ -98,7 +98,6 @@ public class ReplyGenerator : MonoBehaviour
 		try
 		{
 			string cleanedReply = reply.Trim();
-			Debug.Log($"Parsing reply: {cleanedReply}");
 			eventReply = JsonUtility.FromJson<EventReply>(cleanedReply);
 			
 			if (eventReply == null)
