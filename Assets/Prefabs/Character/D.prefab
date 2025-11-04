@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6715872419947699314}
   - component: {fileID: 1743803486682053753}
-  - component: {fileID: 6657206398879140757}
+  - component: {fileID: 4453096108059973519}
   m_Layer: 0
   m_Name: D
   m_TagString: Untagged
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6657206398879140757
+--- !u!114 &4453096108059973519
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,17 +95,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1722209750828769519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07e03d3d6af16fb459f0a85334f03f4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 98c729f68c3f8f84b8ef8a48178b1651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   price: 4
-  level: 1
+  level: 0
   maxHealth: 1175
-  attack: 64
-  attackDistance: 85
+  attack: 85
+  attackDistance: 1
   attackRange: 1
-  speed: 10
-  skillDescription: "\u6BCF\u653B\u51FB\u4E09\u6B21\uFF0C\u4F1A\u5411\u8DDD\u79BB\u81EA\u5DF1\u6700\u8FDC\u7684\u654C\u4EBA\u653B\u51FB\u4E00\u6B21 "
+  speed: 100
+  skillDescription: "\t\u6BCF\u653B\u51FB\u4E09\u4E0B\u4F1A\u5411\u8DDD\u79BB\u81EA\u5DF1\u6700\u8FDC\u7684\u654C\u4EBA\u53D1\u5C04\u4E00\u679A\u706B\u7BAD"
   health: 0
   characterName: D
   uid: 

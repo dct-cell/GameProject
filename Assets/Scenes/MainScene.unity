@@ -339,6 +339,7 @@ MonoBehaviour:
   mainSceneName: MainScene
   mapSceneName: MapScene
   ShopSceneName: ShopScene
+  EventSceneName: EventScene
 --- !u!4 &699162744
 Transform:
   m_ObjectHideFlags: 0
@@ -476,7 +477,10 @@ MonoBehaviour:
   playerDepth: 0
   playerPosition: 0
   shopCharacters:
-  - {fileID: -9168968787749033272, guid: ea7b5881472dafe41ac34d10ba4ea1ad, type: 3}
+  - {fileID: 711522539720392736, guid: ea7b5881472dafe41ac34d10ba4ea1ad, type: 3}
+  - {fileID: 7313761001140525041, guid: 13fa7716061d1c34188306da068fc891, type: 3}
+  - {fileID: 4030503677038638481, guid: 835c9e28d3adef84c86098c6e256190a, type: 3}
+  - {fileID: 4453096108059973519, guid: 8a3e27a1c4ee59144a921198224dc85e, type: 3}
 --- !u!1 &1176098106
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,10 +870,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPrefabs:
-  - {fileID: -9168968787749033272, guid: ea7b5881472dafe41ac34d10ba4ea1ad, type: 3}
-  - {fileID: -156899269751957324, guid: 13fa7716061d1c34188306da068fc891, type: 3}
-  - {fileID: -7727651832468990959, guid: 835c9e28d3adef84c86098c6e256190a, type: 3}
-  - {fileID: 6657206398879140757, guid: 8a3e27a1c4ee59144a921198224dc85e, type: 3}
+  - {fileID: 711522539720392736, guid: ea7b5881472dafe41ac34d10ba4ea1ad, type: 3}
+  - {fileID: 7313761001140525041, guid: 13fa7716061d1c34188306da068fc891, type: 3}
+  - {fileID: 4030503677038638481, guid: 835c9e28d3adef84c86098c6e256190a, type: 3}
+  - {fileID: 4453096108059973519, guid: 8a3e27a1c4ee59144a921198224dc85e, type: 3}
 --- !u!4 &1804763733
 Transform:
   m_ObjectHideFlags: 0

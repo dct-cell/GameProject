@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6715872419947699314}
   - component: {fileID: 1743803486682053753}
-  - component: {fileID: -7727651832468990959}
+  - component: {fileID: 4030503677038638481}
   m_Layer: 0
   m_Name: C
   m_TagString: Untagged
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7727651832468990959
+--- !u!114 &4030503677038638481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,17 +95,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1722209750828769519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6830aa30df7ae4ab1ebc58c95abf2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 739f87f84c198d64aa3814fd2c7ed3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   price: 4
-  level: 1
+  level: 0
   maxHealth: 800
   attack: 64
   attackDistance: 3
   attackRange: 3
-  speed: 10
-  skillDescription: "\u6211\u624D\u662F\u5976\u9F99\uFF01"
+  speed: 100
+  skillDescription: C
   health: 0
   characterName: C
   uid: 
