@@ -13,9 +13,14 @@ public class EventManager : MonoBehaviour {
             return;
         }
         instance = this;
-    }
+	}
+	private void OnDestroy()
+	{
+		if (instance == this)
+			instance = null;
+	}
 
-    public TextMeshProUGUI eventText;
+	public TextMeshProUGUI eventText;
 
     public async void GenerateEvent() {
         eventText.text = await EventGenerator.instance.GetEvent();
@@ -31,9 +36,11 @@ public class EventManager : MonoBehaviour {
     public Button nextLevelButton;
     public Button endInputButton;
 
-    public async void HandleInputCompletion() {
-        LLMReturnText.text = await ReplyGenerator.instance.GenerateReply(userInputField.text);
-        endInputButton.gameObject.SetActive(false);
+    public async void HandleInputCompletion()
+	{
+        LLMReturnText.text = "ÇëµÈ´ý¡­¡­";
+		LLMReturnText.text = await ReplyGenerator.instance.GenerateReply(userInputField.text);
+		endInputButton.gameObject.SetActive(false);
         nextLevelButton.gameObject.SetActive(true);
     }
 }

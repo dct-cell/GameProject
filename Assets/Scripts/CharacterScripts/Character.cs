@@ -93,17 +93,19 @@ public abstract class Character : MonoBehaviour // Base class for all characters
 	
 	// 移动一步，使得距离最近的敌人距离最小
     public void MoveLogic() {
-        List<Character> targets = BattleManager.instance.GetAliveTeamMember(teamId ^ 1);
-        List<Vector3Int> validPositions = GridManager.instance.ValidPositions(position);
+        //List<Character> targets = BattleManager.instance.GetAliveTeamMember(teamId ^ 1);
+        //List<Vector3Int> validPositions = GridManager.instance.ValidPositions(position);
 
-        int minDist = int.MaxValue;
-        foreach (var pos in validPositions)
-            minDist = Mathf.Min(minDist, GridManager.instance.GetMinDistInTargets(pos, targets));
-        foreach (var pos in validPositions)
-            if (GridManager.instance.GetMinDistInTargets(pos, targets) == minDist) {
-                Debug.Log($"{uid} moves from {position} to {pos}.");
-                position = pos;
-                break;
-            }
-    }
+        //int minDist = int.MaxValue;
+        //foreach (var pos in validPositions)
+        //    minDist = Mathf.Min(minDist, GridManager.instance.GetMinDistInTargets(pos, targets));
+        //foreach (var pos in validPositions)
+        //    if (GridManager.instance.GetMinDistInTargets(pos, targets) == minDist) {
+        //        Debug.Log($"{uid} moves from {position} to {pos}.");
+        //        position = pos;
+        //        break;
+        //    }
+        position = PathSystem.instance.MeleeLogic(this);
+
+	}
 }
