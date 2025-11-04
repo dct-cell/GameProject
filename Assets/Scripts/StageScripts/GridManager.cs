@@ -37,6 +37,7 @@ public class GridManager : MonoBehaviour
 
     public void GridInit()
     {
+		// TODO: 障碍
 		for (int x = -size; x <= size; x++)
 			for (int y = -size; y <= size; y++) {
 				Vector3Int coordinate = new Vector3Int(x, y, -x - y);
@@ -95,29 +96,10 @@ public class GridManager : MonoBehaviour
 		}
 		return neighbourhood;
 	}
-	
-	// 找到可行的位置
-	public List<Vector3Int> ValidPositions(Vector3Int cur)
-    {
-        List<Vector3Int> validPositions = new List<Vector3Int>();
-        foreach (var dir in directionsArray)
-            if (CheckPosition(cur + dir) && !HasCharacter(cur + dir))
-                validPositions.Add(cur + dir);
-
-		Extensions.Shuffle(validPositions);
-		return validPositions;
-	}
 
     public int Distance(Vector3Int a, Vector3Int b) 
     {
 		return (Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y) + Mathf.Abs(a.z - b.z)) / 2;
-	}
-
-	public int GetMinDistInTargets(Vector3Int pos, List<Character> targets) {
-        int mi = int.MaxValue;
-		foreach (var target in targets)
-            mi = Mathf.Min(mi, Distance(pos, target.position));
-        return mi;
 	}
 
 	public void CleanUp() {
