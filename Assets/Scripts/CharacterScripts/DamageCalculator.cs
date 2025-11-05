@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class DamageCalculator : MonoBehaviour
 {
@@ -16,8 +17,12 @@ public class DamageCalculator : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 
-	public int CalculateDamage(string attackerId, string defenderId)
+	public int CalculateDamage(string attackerId, string defenderId, float ratio)
 	{
-		return BattleManager.instance.FindCharacter(attackerId).attack;
+		Character attacker = BattleManager.instance.FindCharacter(attackerId);
+		Character defender = BattleManager.instance.FindCharacter(defenderId);
+		int damage = Mathf.FloorToInt(attacker.attack * attacker.getAttackModifier() * ratio * attacker.getDamageModifier() * defender.getTakeDamageModifier());
+        Debug.Log($"{attackerId} [{attacker.characterName}] attacks {defenderId} [{defender.characterName}] for {damage} damage.");
+        return damage;
 	}
 }

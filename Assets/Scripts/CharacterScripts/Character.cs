@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,7 +69,8 @@ public abstract class Character : MonoBehaviour // Base class for all characters
         characterBattleAnimator.StartMoveTo(targetWorldPos);
     }
 
-    // 返回攻击坐标，默认随机找一个距离不超过 attackDistance 的敌人
+    #region Action Logic
+    // 返回攻击坐标，默认随机找一个距离不超过 attackDistance 的敌人（的位置）
     protected virtual Vector3Int? FindTargetLogic() {
         List<Character> enemies = BattleManager.instance.GetAliveTeamMember(teamId ^ 1);
 		Extensions.Shuffle(enemies);
@@ -79,15 +81,14 @@ public abstract class Character : MonoBehaviour // Base class for all characters
     }
 
 	// 攻击以 targetPosition 为中心，范围 attackRange 的敌人
-    public virtual void AttackLogic(Vector3Int? _targetPosition) {
+    public virtual void AttackLogic(Vector3Int? _targetPosition, float ratio = 1.0f) {
 		if (_targetPosition == null) return;
 		Vector3Int attackPosition = _targetPosition.Value;
         List<Character> enemies = BattleManager.instance.GetAliveTeamMember(teamId ^ 1);
         foreach (Character enemy in enemies)
             if (GridManager.instance.Distance(attackPosition, enemy.position) < attackRange) {
                 string targetId = enemy.uid;
-                Debug.Log($"{uid} attacks {targetId} for {attack} damage.");
-                BattleManager.instance.DamageCharacter(targetId, DamageCalculator.instance.CalculateDamage(uid, targetId));
+                BattleManager.instance.DamageCharacter(targetId, DamageCalculator.instance.CalculateDamage(uid, targetId, ratio));
             }
     }
 	
@@ -108,4 +109,66 @@ public abstract class Character : MonoBehaviour // Base class for all characters
         position = PathSystem.instance.MeleeLogic(this);
 
 	}
+    #endregion
+    #region buff
+
+    // 假定效果只包括 攻击力提升，伤害提升，受到伤害提高
+
+    public List<float> attackModifier = new List<float>();
+    public List<float> damageModifier = new List<float>();
+    public List<float> takeDamageModifier = new List<float>();
+    public List<(int, int, float)> effectToRemove = new List<(int, int, float)> ();
+
+    public void ModifyAttack(float _value, int duration) {
+        attackModifier.Add(_value);
+        effectToRemove.Add((duration, 1, _value));
+    }
+    public void ModifyDamage(float _value, int duration) {
+        attackModifier.Add(_value);
+        effectToRemove.Add((duration, 2, _value));
+    }
+    public void ModifyTakenDamage(float _value, int duration) {
+        attackModifier.Add(_value);
+        effectToRemove.Add((duration, 3, _value));
+    }
+
+    public float getAttackModifier() {
+        float result = 1;
+        foreach (var modifier in attackModifier)
+            result *= 1 + modifier;
+        return result;
+    }
+
+    public float getDamageModifier() {
+        float result = 1;
+        foreach (var modifier in damageModifier)
+            result *= 1 + modifier;
+        return result;
+    }
+
+    public float getTakeDamageModifier() {
+        float result = 1;
+        foreach (var modifier in takeDamageModifier)
+            result *= 1 + modifier;
+        return result;
+    }
+
+    public void RemoveEffect() {
+        List<(int, int, float)> _effect = new List<(int, int, float)>();
+        foreach (var effect in effectToRemove) {
+            if (effect.Item1 == 1) {
+                switch (effect.Item2) {
+                    case 1: attackModifier.Remove(effect.Item3); break;
+                    case 2: damageModifier.Remove(effect.Item3); break;
+                    case 3: takeDamageModifier.Remove(effect.Item3); break;
+                    default: break;
+                }
+            }
+            else {
+                _effect.Add((effect.Item1 - 1, effect.Item2, effect.Item3));
+            }
+        }
+        effectToRemove = _effect;
+    }
+    #endregion
 }
