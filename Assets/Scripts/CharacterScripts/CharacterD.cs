@@ -14,7 +14,11 @@ public class CharacterD : Character {
         Vector3Int? targetId = FindTargetLogic();
         if (targetId != null) {
             AttackLogic(targetId);
-            AttackFarthest();
+            skillCount++;
+            if (skillCount == 3) {
+                AttackFarthest();
+                skillCount = 0;
+            }
             return 1;
         }
         else {
@@ -24,20 +28,17 @@ public class CharacterD : Character {
     }
 
     private void AttackFarthest() {
-        skillCount++;
-        if (skillCount == 3) {
-            List<Character> enemies = BattleManager.instance.GetAliveTeamMember(teamId ^ 1);
-            int maxDistance = -1;
-            foreach (var enemy in enemies) {
-                int distance = GridManager.instance.Distance(position, enemy.position);
-                if (distance > maxDistance)
-                    maxDistance = distance;
-            }
-            Extensions.Shuffle(enemies);
-            foreach (var enemy in enemies)
-                if (GridManager.instance.Distance(position, enemy.position) == maxDistance)
-                    AttackLogic(enemy.position);
-            skillCount = 0;
+        List<Character> enemies = BattleManager.instance.GetAliveTeamMember(teamId ^ 1);
+        int maxDistance = -1;
+        foreach (var enemy in enemies) {
+            int distance = GridManager.instance.Distance(position, enemy.position);
+            if (distance > maxDistance)
+                maxDistance = distance;
         }
+        Extensions.Shuffle(enemies);
+        foreach (var enemy in enemies)
+            if (GridManager.instance.Distance(position, enemy.position) == maxDistance)
+                AttackLogic(enemy.position);
+        skillCount = 0;
     }
 }
