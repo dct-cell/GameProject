@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6715872419947699314}
   - component: {fileID: 1743803486682053753}
+  - component: {fileID: 2351067179530149893}
   m_Layer: 0
   m_Name: H
   m_TagString: Untagged
@@ -160,6 +161,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2351067179530149893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722209750828769519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196b0a3b57bff01419be0d9aa5b3cb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  price: 3
+  level: 0
+  maxHealth: 1200
+  attack: 50
+  attackDistance: 1
+  attackRange: 1
+  speed: 150
+  skillDescription: "\u573A\u4E0A\u6BCF\u6709\u4E00\u4E2A\u5355\u4F4D\u6B7B\u4EA1\u65F6\uFF0C\u672C\u573A\u6218\u6597\u5185\u6700\u5927\u751F\u547D\u503C\u548C\u653B\u51FB\u529B\u6C38\u4E45\u63D0\u534710%"
+  characterName: H
+  currentAttack: 0
+  currentMaxHealth: 0
+  currentHealth: 0
+  shield: 0
+  uid: 
+  teamId: 0
+  position: {x: 0, y: 0, z: 0}
+  characterBattleAnimator: {fileID: 0}
+  healthBarUI: {fileID: 0}
+  nextRoundTime: 0
+  attackModifier: []
+  damageModifier: []
+  takeDamageModifier: []
+  healthModifier: []
 --- !u!1 &1789524959498880505
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,8 +425,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 420, y: 100}
-  m_SizeDelta: {x: 200, y: 25}
+  m_AnchoredPosition: {x: 400, y: 100}
+  m_SizeDelta: {x: 140, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7876178470752216887
 GameObject:

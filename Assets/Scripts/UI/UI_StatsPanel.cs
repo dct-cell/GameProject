@@ -31,7 +31,7 @@ public class UI_StatsPanel : MonoBehaviour {
         characterName.text = character.characterName;
         characterImage.sprite = character.GetComponent<SpriteRenderer>().sprite;
         characterImage.color = character.GetComponent<SpriteRenderer>().color;
-        health.text = "ÉúÃü£º" + character.health.ToString() + " / " + character.maxHealth.ToString();
+        health.text = "ÉúÃü£º" + character.currentHealth.ToString() + " / " + character.maxHealth.ToString();
         attack.text = "¹¥»÷Á¦£º" + character.attack.ToString();
         attackDistance.text = "¹¥»÷¾àÀë£º" + character.attackDistance.ToString();
         attackRange.text = "¹¥»÷·¶Î§£º" + character.attackRange.ToString();

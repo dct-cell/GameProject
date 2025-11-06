@@ -17,7 +17,9 @@ public abstract class Character : MonoBehaviour // Base class for all characters
 	public string skillDescription;
 	public string characterName;
 
-	public int health;
+    public int currentAttack;
+    public int currentMaxHealth;
+	public int currentHealth;
     public int shield;
 
 	public string uid;
@@ -29,7 +31,7 @@ public abstract class Character : MonoBehaviour // Base class for all characters
 
 	public int nextRoundTime;
 
-	public bool isAlive => health > 0;
+	public bool isAlive => currentHealth > 0;
 
 	protected virtual void Awake()
 	{
@@ -37,7 +39,7 @@ public abstract class Character : MonoBehaviour // Base class for all characters
 		if (characterBattleAnimator == null)
 			characterBattleAnimator = gameObject.AddComponent<CharacterBattleAnimator>();
 		healthBarUI = GetComponentInChildren<UI_HealthBar>();
-        health = maxHealth;
+        currentHealth = currentMaxHealth = maxHealth;
     }
 
 	public virtual void IsDamagedBy(int damage)
@@ -45,13 +47,16 @@ public abstract class Character : MonoBehaviour // Base class for all characters
         int shieldDecrease = Math.Min(shield, damage);
         shield -= shieldDecrease;
         damage -= shieldDecrease;
-		health -= damage;
+		currentHealth -= damage;
+        if (!isAlive)
+            ActionsWhenDie();
 		characterBattleAnimator.PlayDamageEffect();
 		healthBarUI.UpdateHealthUI();
 	}
 
-    public virtual void ActionsAtStart() {
-
+    // 战斗开始时（初始化）
+    public virtual void ActionsWhenStart() {
+        currentAttack = attack;
     }
 
 	public virtual int SingleRound() 
@@ -72,8 +77,16 @@ public abstract class Character : MonoBehaviour // Base class for all characters
         }
     }
 
-    public virtual void ActionsAtEnd() {
+    // 亡语
+    public virtual void ActionsWhenDie() {
+        BattleManager.instance.TriggerCharacterDied(this);
+    }
+
+    // 战斗结束时（清buff）
+    public virtual void ActionsWhenEnd() {
         shield = 0;
+        attackModifier = damageModifier = takeDamageModifier = healthModifier = new List<float>();
+        ClearEffect();
     }
 
     public void MoveAnimation() {
@@ -124,24 +137,34 @@ public abstract class Character : MonoBehaviour // Base class for all characters
     #endregion
     #region buff
 
-    // 假定效果只包括 攻击力提升，伤害提升，受到伤害提高
+    // 假定效果只包括 生命值提升，攻击力提升，伤害提升，受到伤害提高
+    // 所有的 buff 都只在局内生效
 
     public List<float> attackModifier = new List<float>();
     public List<float> damageModifier = new List<float>();
     public List<float> takeDamageModifier = new List<float>();
+    public List<float> healthModifier = new List<float>();
     public List<(int, int, float)> effectToRemove = new List<(int, int, float)> ();
 
     public void ModifyAttack(float _value, int duration) {
         attackModifier.Add(_value);
         effectToRemove.Add((duration, 1, _value));
+        ReCalculate();
     }
     public void ModifyDamage(float _value, int duration) {
-        attackModifier.Add(_value);
+        damageModifier.Add(_value);
         effectToRemove.Add((duration, 2, _value));
+        ReCalculate();
     }
     public void ModifyTakenDamage(float _value, int duration) {
-        attackModifier.Add(_value);
+        takeDamageModifier.Add(_value);
         effectToRemove.Add((duration, 3, _value));
+        ReCalculate();
+    }
+    public void ModifyHealth(float _value, int duration) {
+        healthModifier.Add(_value);
+        effectToRemove.Add((duration, 4, _value));
+        ReCalculate();
     }
 
     public float getAttackModifier() {
@@ -165,6 +188,13 @@ public abstract class Character : MonoBehaviour // Base class for all characters
         return result;
     }
 
+    public float getHealthModifier() {
+        float result = 1;
+        foreach (var modifier in healthModifier)
+            result *= 1 + modifier;
+        return result;
+    }
+
     public void RemoveEffect() {
         List<(int, int, float)> _effect = new List<(int, int, float)>();
         foreach (var effect in effectToRemove) {
@@ -173,6 +203,7 @@ public abstract class Character : MonoBehaviour // Base class for all characters
                     case 1: attackModifier.Remove(effect.Item3); break;
                     case 2: damageModifier.Remove(effect.Item3); break;
                     case 3: takeDamageModifier.Remove(effect.Item3); break;
+                    case 4: healthModifier.Remove(effect.Item3); break;
                     default: break;
                 }
             }
@@ -181,6 +212,30 @@ public abstract class Character : MonoBehaviour // Base class for all characters
             }
         }
         effectToRemove = _effect;
+        ReCalculate();
+    }
+
+    public void ClearEffect() {
+        foreach (var effect in effectToRemove) {
+            switch (effect.Item2) {
+                case 1: attackModifier.Remove(effect.Item3); break;
+                case 2: damageModifier.Remove(effect.Item3); break;
+                case 3: takeDamageModifier.Remove(effect.Item3); break;
+                case 4: healthModifier.Remove(effect.Item3); break;
+                default: break;
+            }
+        }
+        effectToRemove = new List<(int, int, float)>();
+        ReCalculate();
+    }
+
+    public void ReCalculate() {
+        currentAttack = Mathf.FloorToInt(attack * getAttackModifier());
+        float currentRatio = 1.0f * currentHealth / currentMaxHealth;
+        currentMaxHealth = Mathf.FloorToInt(maxHealth * getHealthModifier());
+        currentHealth = Mathf.FloorToInt(currentRatio * currentMaxHealth);
+        if (currentHealth <= 0)
+            currentHealth = 1;
     }
     #endregion
 
