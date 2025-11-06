@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class UI_HealthBar : MonoBehaviour
 {
     public Character character;
-    public Slider slider;
-    public Image fillImage;
+    public GameObject healthBar;
+    public GameObject fillHealth;
+    public GameObject fillShield;
 
     private void Awake() {
         character = GetComponentInParent<Character>();
-        slider = GetComponentInChildren<Slider>();
-        fillImage = slider.GetComponentInChildren<Image>();
+        healthBar = transform.Find("HealthBar").gameObject;
+        fillHealth = transform.Find("HealthBar/Fill_Health").gameObject;
+        fillShield = transform.Find("HealthBar/Fill_Shield").gameObject;
     }
 
     private void OnEnable() {
@@ -21,10 +24,15 @@ public class UI_HealthBar : MonoBehaviour
 
     public void UpdateHealthUI() {
         if (character.teamId == 0)
-            fillImage.color = Color.green;
+            fillHealth.GetComponent<Image>().color = Color.green;
         else
-            fillImage.color = Color.red;
-        slider.maxValue = character.maxHealth;
-        slider.value = character.health;
+            fillHealth.GetComponent<Image>().color = Color.red;
+        fillShield.GetComponent<Image>().color = Color.gray;
+        float totalLength = healthBar.GetComponent<RectTransform>().rect.width;
+        float height = healthBar.GetComponent<RectTransform>().rect.height;
+        float healthPercent = 1.0f * character.health / character.maxHealth;
+        float shieldPercent = 1.0f * character.shield / character.maxHealth;
+        fillHealth.GetComponent<RectTransform>().sizeDelta = new Vector2(healthPercent * totalLength, height);
+        fillShield.GetComponent<RectTransform>().sizeDelta = new Vector2((healthPercent + shieldPercent) * totalLength, height);
     }
 }

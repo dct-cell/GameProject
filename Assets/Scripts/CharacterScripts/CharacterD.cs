@@ -8,7 +8,7 @@ public class CharacterD : Character {
 
     public int skillCount;
 
-    private void Start() {
+    public override void ActionsAtStart() {
         skillCount = 0;
     }
 

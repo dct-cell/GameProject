@@ -50,6 +50,10 @@ public abstract class Character : MonoBehaviour // Base class for all characters
 		healthBarUI.UpdateHealthUI();
 	}
 
+    public virtual void ActionsAtStart() {
+
+    }
+
 	public virtual int SingleRound() 
 	{
 		Debug.Assert(isAlive, $"{characterName} is dead and cannot battle.");
@@ -66,6 +70,10 @@ public abstract class Character : MonoBehaviour // Base class for all characters
             MoveLogic();
             return 0;
         }
+    }
+
+    public virtual void ActionsAtEnd() {
+        shield = 0;
     }
 
     public void MoveAnimation() {

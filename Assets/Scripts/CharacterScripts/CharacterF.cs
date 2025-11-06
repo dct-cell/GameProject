@@ -4,9 +4,14 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CharacterF : Character {
-    protected override void Awake() {
-        base.Awake();
-        shield = maxHealth / 2;
-        Debug.Log($"Character F, shield = {shield}");
+    public override void ActionsAtStart() {
+        List<Vector3Int> neighborPosition = GridManager.instance.FindNeighbourhood(position, 2);
+        foreach (var neighbor in neighborPosition) {
+            Character neighborCharacter = GridManager.instance.FindCharacter(neighbor);
+            if (neighborCharacter != null && neighborCharacter.teamId == 0) {
+                neighborCharacter.shield = neighborCharacter.maxHealth / 4;
+                neighborCharacter.healthBarUI.UpdateHealthUI();
+            }
+        }
     }
 }
