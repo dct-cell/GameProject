@@ -49,6 +49,7 @@ public class BattleManager : MonoBehaviour
 		//Debug.Log($"Add member {character.uid} to team {teamId}");
 		team[teamId].AddMember(character);
 		character.characterBattleAnimator.EnableBattleAnimation();
+		character.healthBarUI.UpdateHealthUI();
 	}
 
 	public void RemoveMember(int teamId, Character character)

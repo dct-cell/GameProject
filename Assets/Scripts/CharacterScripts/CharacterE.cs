@@ -2,10 +2,10 @@
 using UnityEngine;
 
 public class CharacterE : Character {
-    // 每攻击两次，给当前攻击的敌方单位施加 debuff
+    // 每攻击2次，给当前攻击的敌方单位施加 debuff
     public int skillCount;
 
-    private void Start() {
+    public override void ActionsAtStart() {
         skillCount = 0;
     }
     protected override int ProcessSingleRound() {
