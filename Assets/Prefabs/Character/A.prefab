@@ -106,14 +106,18 @@ MonoBehaviour:
   attackRange: 1
   speed: 100
   skillDescription: A
-  health: 0
   characterName: A
+  health: 0
+  shield: 0
   uid: 
   teamId: 0
   position: {x: 0, y: 0, z: 0}
   characterBattleAnimator: {fileID: 0}
   healthBarUI: {fileID: 0}
   nextRoundTime: 0
+  attackModifier: []
+  damageModifier: []
+  takeDamageModifier: []
 --- !u!1 &3100063478185060317
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   slider: {fileID: 0}
+  fillImage: {fileID: 0}
 --- !u!1 &9113543742284319203
 GameObject:
   m_ObjectHideFlags: 0

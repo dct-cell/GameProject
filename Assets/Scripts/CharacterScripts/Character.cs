@@ -15,10 +15,11 @@ public abstract class Character : MonoBehaviour // Base class for all characters
 	public int attackRange; // ¹¥»÷·¶Î§
 	public int speed;
 	public string skillDescription;
+	public string characterName;
 
 	public int health;
+    public int shield;
 
-	public string characterName;
 	public string uid;
 	public int teamId;
 	public Vector3Int position;
@@ -41,6 +42,9 @@ public abstract class Character : MonoBehaviour // Base class for all characters
 
 	public virtual void IsDamagedBy(int damage)
 	{
+        int shieldDecrease = Math.Min(shield, damage);
+        shield -= shieldDecrease;
+        damage -= shieldDecrease;
 		health -= damage;
 		characterBattleAnimator.PlayDamageEffect();
 		healthBarUI.UpdateHealthUI();
@@ -171,4 +175,5 @@ public abstract class Character : MonoBehaviour // Base class for all characters
         effectToRemove = _effect;
     }
     #endregion
+
 }

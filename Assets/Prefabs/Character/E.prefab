@@ -106,8 +106,9 @@ MonoBehaviour:
   attackRange: 1
   speed: 100
   skillDescription: "\u6BCF\u653B\u51FB\u4E24\u6B21\uFF0C\u7ED9\u53D7\u5230\u653B\u51FB\u4E00\u4E2A\u654C\u65B9\u5355\u4F4D\u6DFB\u52A0\u6807\u8BB0\uFF0C\u6301\u7EED2\u56DE\u5408\uFF0C\u6807\u8BB0\u671F\u95F4\u8BE5\u654C\u4EBA\u6536\u5230\u7684\u4F24\u5BB3\u589E\u52A050%"
-  health: 0
   characterName: E
+  health: 0
+  shield: 0
   uid: 
   teamId: 0
   position: {x: 0, y: 0, z: 0}
@@ -435,6 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   slider: {fileID: 0}
+  fillImage: {fileID: 0}
 --- !u!1 &9113543742284319203
 GameObject:
   m_ObjectHideFlags: 0

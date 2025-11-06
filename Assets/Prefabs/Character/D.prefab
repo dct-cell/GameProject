@@ -106,14 +106,18 @@ MonoBehaviour:
   attackRange: 1
   speed: 100
   skillDescription: "\t\u6BCF\u653B\u51FB\u4E09\u4E0B\u4F1A\u5411\u8DDD\u79BB\u81EA\u5DF1\u6700\u8FDC\u7684\u654C\u4EBA\u53D1\u5C04\u4E00\u679A\u706B\u7BAD"
-  health: 0
   characterName: D
+  health: 0
+  shield: 0
   uid: 
   teamId: 0
   position: {x: 0, y: 0, z: 0}
   characterBattleAnimator: {fileID: 0}
   healthBarUI: {fileID: 0}
   nextRoundTime: 0
+  attackModifier: []
+  damageModifier: []
+  takeDamageModifier: []
   skillCount: 0
 --- !u!1 &4787146678219171843
 GameObject:
@@ -432,6 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   slider: {fileID: 0}
+  fillImage: {fileID: 0}
 --- !u!1 &9113543742284319203
 GameObject:
   m_ObjectHideFlags: 0

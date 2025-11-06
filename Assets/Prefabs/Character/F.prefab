@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6715872419947699314}
   - component: {fileID: 1743803486682053753}
+  - component: {fileID: 4316709225503487881}
   m_Layer: 0
   m_Name: F
   m_TagString: Untagged
@@ -85,6 +86,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4316709225503487881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722209750828769519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea17cddd2668e7449b74a4d93e2accaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  price: 3
+  level: 0
+  maxHealth: 1000
+  attack: 70
+  attackDistance: 1
+  attackRange: 1
+  speed: 100
+  skillDescription: "\u521D\u59CB\u65F6\u83B7\u5F97\u7B49\u540C\u4E8E\u81EA\u8EAB\u751F\u547D\u503C50%\u7684\u62A4\u76FE"
+  characterName: F
+  health: 0
+  shield: 0
+  uid: 
+  teamId: 0
+  position: {x: 0, y: 0, z: 0}
+  characterBattleAnimator: {fileID: 0}
+  healthBarUI: {fileID: 0}
+  nextRoundTime: 0
+  attackModifier: []
+  damageModifier: []
+  takeDamageModifier: []
 --- !u!1 &4787146678219171843
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   slider: {fileID: 0}
+  fillImage: {fileID: 0}
 --- !u!1 &9113543742284319203
 GameObject:
   m_ObjectHideFlags: 0

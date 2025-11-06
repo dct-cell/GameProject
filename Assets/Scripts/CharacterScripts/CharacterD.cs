@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class CharacterD : Character {
+    // 每攻击3次，攻击1次最远的敌方目标
+
     public int skillCount;
 
     private void Start() {
