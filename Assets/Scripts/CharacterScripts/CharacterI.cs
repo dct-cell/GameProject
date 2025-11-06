@@ -1,8 +1,8 @@
 
 using UnityEngine;
 
-public class CharacterE : Character {
-    // 给标记：每攻击2次，给当前攻击的敌方单位施加 debuff
+public class CharacterI : Character {
+    // 攻击后伤害提升20%（可叠加），移动后清除该效果
     public int skillCount;
 
     public override void ActionsWhenStart() {
@@ -13,15 +13,18 @@ public class CharacterE : Character {
         Vector3Int? targetId = FindTargetLogic();
         if (targetId != null) {
             AttackLogic(targetId);
-            skillCount++;
-            if (skillCount == 2) {
-                Character defender = GridManager.instance.FindCharacter(targetId.Value);
-                defender.ModifyTakenDamage(0.5f, 2);
-            }
+            ModifyDamage(0.2f, 10000);
+            ++skillCount;
             return 1;
         }
         else {
             MoveLogic();
+            for (int i = 0; i < skillCount; i++) {
+                damageModifier.Remove(0.2f);
+                effectToRemove.Remove((10000 - i, 2, 0.2f));
+            }
+            ReCalculate();
+            skillCount = 0;
             return 0;
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -208,4 +209,12 @@ public class BattleManager : MonoBehaviour
 			return -1;
 		}
 	}
+
+    public event Action<Character> OnCharacterDied;
+
+    public void TriggerCharacterDied(Character diedCharacter) {
+        // 确保事件有订阅者，避免空引用错误
+        OnCharacterDied?.Invoke(diedCharacter);
+        Debug.Log($"EVENT: Unit {diedCharacter.name} has died.");
+    }
 }

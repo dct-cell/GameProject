@@ -17,12 +17,19 @@ public class DamageCalculator : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 
-	public int CalculateDamage(string attackerId, string defenderId, float ratio)
+	// damageType = 0 表示攻击力倍率，damageType = 1 表示生命值倍率
+	public int CalculateDamage(string attackerId, string defenderId, float ratio = 1.0f, int damageType = 0)
 	{
 		Character attacker = BattleManager.instance.FindCharacter(attackerId);
 		Character defender = BattleManager.instance.FindCharacter(defenderId);
-		int damage = Mathf.FloorToInt(attacker.attack * attacker.getAttackModifier() * ratio * attacker.getDamageModifier() * defender.getTakeDamageModifier());
-        Debug.Log($"{attackerId} [{attacker.characterName}] attacks {defenderId} [{defender.characterName}] for {damage} damage.");
-        return damage;
+		float damage = ratio;
+		if (damageType == 0)
+			damage *= attacker.currentAttack;
+		else
+			damage *= attacker.currentMaxHealth;
+		damage *= attacker.getDamageModifier() * defender.getTakeDamageModifier();
+		int finalDamage = Mathf.FloorToInt(damage);
+        Debug.Log($"{attackerId} [{attacker.characterName}] attacks {defenderId} [{defender.characterName}] for {finalDamage} damage.");
+        return finalDamage;
 	}
 }

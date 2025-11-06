@@ -110,8 +110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 420, y: 100}
-  m_SizeDelta: {x: 200, y: 25}
+  m_AnchoredPosition: {x: 400, y: 100}
+  m_SizeDelta: {x: 140, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1722209750828769519
 GameObject:
@@ -123,6 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6715872419947699314}
   - component: {fileID: 1743803486682053753}
+  - component: {fileID: 6920450720968170688}
   m_Layer: 0
   m_Name: G
   m_TagString: Untagged
@@ -198,6 +199,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6920450720968170688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722209750828769519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbff6329f321b9349950a9f9911c0b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  price: 3
+  level: 0
+  maxHealth: 1120
+  attack: 35
+  attackDistance: 1
+  attackRange: 1
+  speed: 150
+  skillDescription: "\u6B7B\u4EA1\u540E\u7206\u70B8\uFF0C\u5BF9\u76F8\u90BB\u654C\u4EBA\u9020\u6210\u7B49\u540C\u4E8E\u81EA\u8EAB\u751F\u547D\u503C50%\u7684\u4F24\u5BB3\uFF0C\u5E76\u9020\u62101\u56DE\u5408\u7729\u6655"
+  characterName: G
+  health: 0
+  shield: 0
+  uid: 
+  teamId: 0
+  position: {x: 0, y: 0, z: 0}
+  characterBattleAnimator: {fileID: 0}
+  healthBarUI: {fileID: 0}
+  nextRoundTime: 0
+  attackModifier: []
+  damageModifier: []
+  takeDamageModifier: []
 --- !u!1 &3575034766590998252
 GameObject:
   m_ObjectHideFlags: 0

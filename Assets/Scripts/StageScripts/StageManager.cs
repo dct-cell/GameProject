@@ -38,15 +38,15 @@ public class StageManager : MonoBehaviour // Manages the stage setup and battle 
         UI_BagManager.instance.CleanUp();
         startButton.gameObject.SetActive(false);
 		foreach (var character in BattleManager.instance.GetAllTeamMember(0))
-			character.ActionsAtStart();
+			character.ActionsWhenStart();
 		foreach (var character in BattleManager.instance.GetAllTeamMember(1))
-			character.ActionsAtStart();
+			character.ActionsWhenStart();
     }
 
 	public void FinishBattle() {
 		foreach (var character in BattleManager.instance.GetAllTeamMember(0)) {
 			if (character.isAlive) {
-				character.ActionsAtEnd();
+				character.ActionsWhenEnd();
 				BagManager.instance.AddMember(character);
 			}
 			else
