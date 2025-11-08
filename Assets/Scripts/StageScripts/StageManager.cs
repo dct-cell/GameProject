@@ -21,6 +21,8 @@ public class StageManager : MonoBehaviour // Manages the stage setup and battle 
 			instance = null;
 	}
 
+	public int maxCharacterCount;
+
 	public Button startButton;
 
 	public bool isStarted;
@@ -30,7 +32,7 @@ public class StageManager : MonoBehaviour // Manages the stage setup and battle 
 	{
 		isStarted = false;
 		isFinished = false;
-	}
+    }
 	public void StartBattle() // start the battle
 	{
 		isStarted = true;

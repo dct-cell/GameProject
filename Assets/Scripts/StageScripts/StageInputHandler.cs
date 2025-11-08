@@ -12,7 +12,10 @@ public class StageInputHandler : MonoBehaviour // Handles input specific to the 
 	public bool selectedInBag;
 	public Character selectedCharacter;
 	[SerializeField] LayerMask gridLayerMask;
-	private void Awake()
+
+    public int currentCharacterCount;
+
+    private void Awake()
 	{
 		if (instance != null && instance != this)
 		{
@@ -114,6 +117,8 @@ public class StageInputHandler : MonoBehaviour // Handles input specific to the 
 			Debug.Assert(teamID == 0, "Only player team members can be removed.");
             BattleManager.instance.RemoveMember(selectedCharacter);
 			selectedCharacter.gameObject.SetActive(false);
+            --currentCharacterCount;
+            UI_BattleSceneManager.instance.UpdateCharacterCountText();
         }
     }
 
@@ -171,11 +176,19 @@ public class StageInputHandler : MonoBehaviour // Handles input specific to the 
 				Vector3Int coordinate = gridScript.coordinate;
                 // 如果格子里没有角色，放置选中的角色
                 if (!GridManager.instance.HasCharacter(coordinate)) {
-					RemoveMember();
-                    selectedCharacter.gameObject.SetActive(true);
-                    selectedCharacter.position = coordinate;
-					BattleManager.instance.AddMember(0, selectedCharacter);
-					DeSelectCharacter();
+                    if (!(selectedInBag && currentCharacterCount == StageManager.instance.maxCharacterCount)) {
+                        RemoveMember();
+                        selectedCharacter.gameObject.SetActive(true);
+                        selectedCharacter.position = coordinate;
+                        BattleManager.instance.AddMember(0, selectedCharacter);
+                        ++currentCharacterCount;
+                        UI_BattleSceneManager.instance.UpdateCharacterCountText();
+                        DeSelectCharacter();
+                    }
+                    else {
+                        Debug.Log("已达上限！");
+                        UI_BattleSceneManager.instance.StartFlashText();
+                    }
 				}
                 // 如果格子里有角色，是玩家阵营则选中，是敌方阵营则显示信息
                 else {

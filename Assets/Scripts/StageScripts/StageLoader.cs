@@ -27,7 +27,7 @@ public class StageLoader : MonoBehaviour
 		BattleManager.instance.AddMember(1, CharacterCreater.instance.CreateBattleCharacter("E", 1, new Vector3Int(2, 2, -4)));
 		BattleManager.instance.AddMember(1, CharacterCreater.instance.CreateBattleCharacter("F", 1, new Vector3Int(3, 1, -4)));
         BattleManager.instance.AddMember(1, CharacterCreater.instance.CreateBattleCharacter("G", 1, new Vector3Int(4, -1, -3)));
-
+		StageManager.instance.maxCharacterCount = 5;
     }
 
 }
