@@ -21,7 +21,6 @@ public class MapManager : MonoBehaviour {
     public List<int[]> vertices = new List<int[]>();
     public List<MapSlotType[]> types = new List<MapSlotType[]>();
     public List<bool[,]> edges = new List<bool[,]>(); 
-    public List<MapSlot> mapSlots = new List<MapSlot>();
 
     public void GenerateMap(int _mapWidth, int _mapHeight) {
         mapWidth = _mapWidth;
@@ -36,7 +35,6 @@ public class MapManager : MonoBehaviour {
             types.Add(new MapSlotType[height[i]]);
             for (int j = 0; j < height[i]; j++) {
                 int r = Random.Range(0, 100);
-
 				if (r < 33)
                     types[i][j] = MapSlotType.Battle;
                 else if (r < 66)
@@ -60,10 +58,10 @@ public class MapManager : MonoBehaviour {
                     break;
                 // Debug.Log(i - 1 + "," + pos1 + "->" + i + "," + pos2);
                 if (pos1 < height[i - 1] - 1)
-                    if (Random.Range(0, 100) < 50)
+                    if (Random.Range(0, 100) < 75)
                         pos1++;
                 if (pos2 < height[i] - 1)
-                    if (Random.Range(0, 100) < 50)
+                    if (Random.Range(0, 100) < 75)
                         pos2++;
             }
         }
@@ -74,6 +72,5 @@ public class MapManager : MonoBehaviour {
         vertices = new List<int[]>();
         types = new List<MapSlotType[]>();
         edges = new List<bool[,]>();
-        mapSlots = new List<MapSlot>();
     }
 }

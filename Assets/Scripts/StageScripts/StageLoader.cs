@@ -22,12 +22,22 @@ public class StageLoader : MonoBehaviour
 
 	public int levelId;
 
-	public void StageInit()
-	{
-		BattleManager.instance.AddMember(1, CharacterCreater.instance.CreateBattleCharacter("E", 1, new Vector3Int(2, 2, -4)));
-		BattleManager.instance.AddMember(1, CharacterCreater.instance.CreateBattleCharacter("F", 1, new Vector3Int(3, 1, -4)));
-        BattleManager.instance.AddMember(1, CharacterCreater.instance.CreateBattleCharacter("G", 1, new Vector3Int(4, -1, -3)));
-		StageManager.instance.maxCharacterCount = 5;
+	public void StageInit() {
+		int playerDepth = GameManager.instance.playerDepth;
+		string levelId;
+		if (Random.Range(0, 100) < 50)
+			levelId = "Test_01";
+		else
+			levelId = "Test_02";
+		TextAsset jsonAsset = Resources.Load<TextAsset>("Levels/" + levelId);
+        string jsonText = jsonAsset.text;
+        LevelConfig data = JsonUtility.FromJson<LevelConfig>(jsonText);
+
+        StageManager.instance.maxCharacterCount = data.maxCharacterCount;
+		Debug.Log(data.enemyList);
+		foreach (var enemy in data.enemyList) {
+			BattleManager.instance.AddMember(1, CharacterCreater.instance.CreateBattleCharacter(enemy.name, 1, new Vector3Int(enemy.xPos, enemy.yPos, enemy.zPos)));
+		}
     }
 
 }

@@ -637,6 +637,10 @@ MonoBehaviour:
   mapSlotPrefab: {fileID: 2422196889756309462, guid: aab38583e71af3341b71598f91c0479a, type: 3}
   pathLinePrefab: {fileID: 8158110701591333845, guid: 40fbf101d9e15c5428718a0643c1d8f5, type: 3}
   mapParent: {fileID: 1330937205}
+  icon:
+  - {fileID: 21300000, guid: 0731f39c2fbf8ae4ca5c3764f3eb2092, type: 3}
+  - {fileID: 21300000, guid: c245b04f60bf6c649bd9d1350f38641d, type: 3}
+  - {fileID: 21300000, guid: fa255f184ad21f24b88519290312e630, type: 3}
 --- !u!1 &1330937204
 GameObject:
   m_ObjectHideFlags: 0

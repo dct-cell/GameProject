@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_MapSceneManager : MonoBehaviour {
     public static UI_MapSceneManager instance { get; private set; }
@@ -22,7 +23,13 @@ public class UI_MapSceneManager : MonoBehaviour {
     public Transform mapParent;
     public List<MapSlot[]> mapSlots = new List<MapSlot[]>();
 
+    public List<Sprite> icon = new List<Sprite>();
+    public Dictionary<MapSlotType, Sprite> icons = new Dictionary<MapSlotType, Sprite>();
+
     public void DrawMap() {
+        icons[MapSlotType.Battle] = icon[0];
+        icons[MapSlotType.Event] = icon[1];
+        icons[MapSlotType.Shop] = icon[2];
         mapWidth = MapManager.instance.mapWidth;
         mapHeight = MapManager.instance.mapHeight;  
         height = MapManager.instance.height;
@@ -35,9 +42,13 @@ public class UI_MapSceneManager : MonoBehaviour {
                 newSlot.transform.SetParent(mapParent, false);
                 newSlot.transform.localPosition = new Vector3(xOffset, yOffset, 0);
                 newSlot.GetComponent<MapSlot>().Setup(MapManager.instance.types[i][j], i, j);
+                newSlot.GetComponent<Image>().sprite = icons[MapManager.instance.types[i][j]];
                 mapSlots[i][j] = newSlot.GetComponent<MapSlot>();
                 if (i == GameManager.instance.playerDepth && (i == 0 || MapManager.instance.edges[i - 1][GameManager.instance.playerPosition, j])) {
                     newSlot.GetComponent<MapSlot>().image.color = Color.yellow;
+                }
+                else {
+                    newSlot.GetComponent<MapSlot>().image.color = Color.black;
                 }
             }
         }

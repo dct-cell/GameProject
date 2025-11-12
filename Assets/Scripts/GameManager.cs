@@ -24,20 +24,6 @@ public class GameManager : MonoBehaviour {
     public int playerDepth;
     public int playerPosition;
 
-    private void Update() {
-        // already add button to start game
-        // if in battle, will be handled by stage input handle
-        // if in map, will be handled by map slot
-        // shop and event are not implemented yet
-    }
-
-    //private void AddInitialCharacters() {
-    //    BagManager.instance.AddMember(CharacterCreater.instance.CreateCharacter("meow"));
-    //    BagManager.instance.AddMember(CharacterCreater.instance.CreateCharacter("meow"));
-    //    BagManager.instance.AddMember(CharacterCreater.instance.CreateCharacter("meow"));
-    //    BagManager.instance.AddMember(CharacterCreater.instance.CreateCharacter("meow"));
-    //    BagManager.instance.AddMember(CharacterCreater.instance.CreateCharacter("meow"));
-    //}
     #region Scene Controller
     public void StartGame() {
         if (isGameStarted) {
