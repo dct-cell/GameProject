@@ -1,0 +1,9 @@
+{
+    "characterName": "示例角色",
+    "maxLevel": 3,
+    "maxHealth": [1000, 1500, 2500],
+    "attack": [100, 150, 250],
+    "attackDistance": 1,
+    "speed": 100,
+    "skillDescription": "这个角色的技能是没有技能"
+}
