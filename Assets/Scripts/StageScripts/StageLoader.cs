@@ -29,6 +29,7 @@ public class StageLoader : MonoBehaviour
 			levelId = "Test_01";
 		else
 			levelId = "Test_02";
+		// 关卡根据深度随机选择
 		TextAsset jsonAsset = Resources.Load<TextAsset>("Levels/" + levelId);
         string jsonText = jsonAsset.text;
         LevelConfig data = JsonUtility.FromJson<LevelConfig>(jsonText);
