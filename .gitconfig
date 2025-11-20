@@ -1,0 +1,8 @@
+[merge]
+    tool = unityyamlmerge
+
+[mergetool "unityyamlmerge"]
+    trustExitCode = true
+    # 替换为你的 UnityYAMLMerge.exe 实际路径
+    # 路径通常在 Unity 安装目录下的 Editor\Data\Tools
+    cmd = 'D:\Program Files\2022.3.62f2c1\Editor\Data\Tools\UnityYAMLMerge.exe' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"

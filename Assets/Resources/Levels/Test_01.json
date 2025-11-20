@@ -1,0 +1,9 @@
+{
+    "maxCharacterCount": 5,
+    "enemyList": [
+        {"name": "A", "xPos": 2, "yPos": 3, "zPos": -5},
+        {"name": "B", "xPos": 3, "yPos": 1, "zPos": -4},
+        {"name": "C", "xPos": 4, "yPos": -1, "zPos": -3},
+        {"name": "D", "xPos": 5, "yPos": -3, "zPos": -2}
+    ]
+}
