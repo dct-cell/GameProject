@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bag
+  - BagSlotsParent
   layers:
   - Default
   - TransparentFX
@@ -11,7 +13,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Grid
   - 
   - 
   - 
@@ -43,4 +45,13 @@ TagManager:
     locked: 0
   - name: Grid
     uniqueID: 2189851559
+    locked: 0
+  - name: Piece
+    uniqueID: 3335125915
+    locked: 0
+  - name: Character
+    uniqueID: 3483745699
+    locked: 0
+  - name: UI
+    uniqueID: 2627682141
     locked: 0
